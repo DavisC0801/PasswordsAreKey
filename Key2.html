@@ -16,7 +16,7 @@
 <script>
     let keys = [];
     let sizes = ["small"];
-    let prongs = [3, 4];
+    let prongs = [3, 4, 5];
     let materials = ["gold", "silver"];
     let colors = ["red"]
 
@@ -41,13 +41,18 @@
     // pick the correct key at random
     const correct_key = keys[Math.floor(Math.random() * keys.length)];
 
-    console.log(keys);
-    console.log(correct_key)
-
+    function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
 
     function showKeys() {
         // variable to store the HTML output
         const html_output = [];
+        // shuffle the array
+        shuffleArray(keys);
 
         // for each question...
         keys.forEach((key) => {
@@ -81,8 +86,10 @@
           alert("Error: Incorrect Key.")
         }
         else{
-            alert("Correct key! You've unlocked the door!\n
-            Continue on to the next door here:"<a>https://davisc0801.github.io/PasswordsAreKey/Key3.html</a>)
+          if (window.confirm("Correct key! You've unlocked the final door!\nContinue on to the next door by pressing OK"))
+          {
+          window.location.href='https://davisc0801.github.io/PasswordsAreKey/Key3.html';
+          };
         }
     }
 

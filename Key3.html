@@ -15,9 +15,9 @@
 
 <script>
     let keys = [];
-    let sizes = ["large", "small"];
+    let sizes = ["large", "medium", "small"];
     let prongs = [3, 4, 5];
-    let materials = ["gold", "silver"];
+    let materials = ["gold", "brass", "silver"];
     let colors = ["blue", "green", "red"]
 
     key_id = 1
@@ -38,8 +38,8 @@
         }
     }
 
-    // pick the correct key at random
-    const correct_key = keys[Math.floor(Math.random() * keys.length)];
+    // Hardcode key for this exercise
+    const correct_key = keys[47];
 
     function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -62,7 +62,7 @@
                     onclick="keyClick(\'${key.size}\', \'${key.prongs}\', \'${key.material}\', \'${key.color}\')"
                 >
                     <p>
-                        "This <b>${key.size}</b> key has <b>${key.prongs}</b> prongs and a <b>${key.color}</b> dot on it. It's made out of <b>${key.material}</b>."
+                        "Key ${key.id} - This <b>${key.size}</b> key has <b>${key.prongs}</b> prongs and a <b>${key.color}</b> dot on it. It's made out of <b>${key.material}</b>."
                     </p>
                 </div>
             `);
@@ -74,25 +74,26 @@
 
     function keyClick(size, prongs, material, color){
         if(size != correct_key.size){
-            alert("Error: Incorrect size.")
+          errorMessage()
         }
         else if (prongs != correct_key.prongs) {
-            alert("Error: Incorrect number of prongs.")
+          errorMessage()
         }
         else if (material != correct_key.material) {
-            alert("Error: Incorrect material.")
+          errorMessage()
         }
         else if (color != correct_key.color) {
-            alert("Error: Incorrect material.")
+          errorMessage()
         }
         else{
-          if (window.confirm("Correct key! You've unlocked the door!\nContinue on to the next door by pressing OK"))
-          {
-          window.location.href='https://davisc0801.github.io/PasswordsAreKey/Key2.html';
-          };
+            alert("Correct key! You've unlocked the final door!")
         }
     }
-
     showKeys();
+
+function errorMessage(){
+  alert("Trying Key...")
+  setTimeout(function() { alert("Error: Incorrect Key."); }, 2000);
+}
 
 </script>
