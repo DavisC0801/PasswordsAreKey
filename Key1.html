@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="key_container">
+
+    </div>
+       
+</body>
+</html>
+
+<script>
+    let keys = [];
+    let sizes = ["large", "small"];
+    let prongs = [3, 4, 5];
+    let materials = ["gold", "silver"];
+    let colors = ["blue", "green", "red"]
+
+    key_id = 1
+    for (size of sizes) {
+        for (prong_num of prongs) {
+            for (material of materials) {
+                for (color of colors){
+                    keys.push({
+                        id: key_id,
+                        size: size,
+                        prongs: prong_num,
+                        material: material,
+                        color: color,
+                    })
+                    key_id++;
+                }
+            }
+        }
+    }
+
+    // pick the correct key at random
+    const correct_key = keys[Math.floor(Math.random() * keys.length)];
+
+    console.log(keys);
+    console.log(correct_key)
+
+
+    function showKeys() {
+        // variable to store the HTML output
+        const html_output = [];
+
+        // for each question...
+        keys.forEach((key) => {
+            html_output.push(`
+                <div
+                    id="key${key.id}"
+                    onclick="keyClick(\'${key.size}\', \'${key.prongs}\', \'${key.material}\', \'${key.color}\')"
+                >
+                    <p>
+                        "This <b>${key.size}</b> key has <b>${key.prongs}</b> prongs and a <b>${key.color}</b> dot on it. It's made out of <b>${key.material}</b>."
+                    </p>
+                </div>
+            `);
+        });
+
+        // finally combine our output list into one string of HTML and put it on the page
+        key_container.innerHTML = html_output.join('');
+    }
+
+    function keyClick(size, prongs, material, color){
+        if(size != correct_key.size){
+            alert("Error: Incorrect size.")
+        }
+        else if (prongs != correct_key.prongs) {
+            alert("Error: Incorrect number of prongs.")
+        }
+        else if (material != correct_key.material) {
+            alert("Error: Incorrect material.")
+        }
+        else if (color != correct_key.color) {
+            alert("Error: Incorrect material.")
+        }
+        else{
+            alert("Correct key! You've unlocked the door!")
+        }
+    }
+
+    showKeys();
+
+</script>
