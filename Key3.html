@@ -39,20 +39,11 @@
     }
 
     // Hardcode key for this exercise
-    const correct_key = keys[47];
-
-    function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }
+    const correct_key = keys[46];
 
     function showKeys() {
         // variable to store the HTML output
         const html_output = [];
-        // shuffle the array
-        shuffleArray(keys);
 
         // for each question...
         keys.forEach((key) => {
